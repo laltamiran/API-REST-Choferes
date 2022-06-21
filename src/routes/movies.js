@@ -3,23 +3,23 @@ const res = require('express/lib/response');
 const router = Router();
 const _ = require('underscore');
 
-const movies = require('../samples.json');
+const drivers = require('../samples.json');
 
-console.log(movies);
+console.log(drivers);
 
 router.get('/', (req, res) => {
-    res.json(movies);
+    res.json(drivers);
 });
 
 
 router.post('/', (req, res) => {
-    const {title, director, year, rating } = req.body;
+    const {name, surname, dni } = req.body;
 
-    if (title && director && year && rating) {
-        const id = movies.length + 1;
-        const newMovie = {...req.body, id};
-        movies.push(newMovie);
-        res.json(movies);
+    if (name && surname && dni) {
+        const id = drivers.length + 1;
+        const newDriver = {...req.body, id};
+        movies.push(newDriver);
+        res.json(drivers);
     }else{
         res.status(500).json({error: 'There was an error'});
     }
@@ -27,17 +27,16 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
     const {id} = req.params;
-    const {title, director, year, rating } = req.body;
-    if (title && director && year && rating) {
+    const {name, surname, dni } = req.body;
+    if (name && surname && dni) {
         _.each(movies, (movie, i) => {
             if (movie.id == id) {
-                movie.title = title;
-                movie.director = director;
-                movie.year = year;
-                movie.rating = rating;
+                movie.name = name;
+                movie.surname = surname;
+                movie.dni = dni;
             }
         });
-        res.json(movies);
+        res.json(drivers);
     }else {
         res.status(500).json({error: 'There was an error'});
     }
@@ -46,12 +45,12 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
-    _.each(movies, (movie, i) => {
-        if (movie.id == id) {
-            movies.splice(i, 1);
+    _.each(drivers, (driver, i) => {
+        if (driver.id == id) {
+            driver.splice(i, 1);
         }
     });
-    res.send(movies);
+    res.send(drivers);
 }); 
 
 
