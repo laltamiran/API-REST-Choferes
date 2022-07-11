@@ -1,6 +1,7 @@
 //(12)
 const { Router } = require('express');
 const router = Router();
+const config = require('../routes/config');
 
 //(9)
 router.get('/test', (req, res) => {
@@ -12,3 +13,5 @@ router.get('/test', (req, res) => {
 });
 
 module.exports = router;
+
+
