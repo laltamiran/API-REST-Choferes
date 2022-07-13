@@ -12,7 +12,7 @@ const config ={
 
 if (process.platform === 'win32') {
   try {
-    oracledb.initOracleClient({libDir: 'C:\\oracle\\instantclient_21_6'});   // note the double backslashes
+    oracledb.initOracleClient({libDir: 'C:\\oracle\\instantclient_21_6'}); 
   } catch (err) {
     console.error('Whoops!');
     console.error(err);
