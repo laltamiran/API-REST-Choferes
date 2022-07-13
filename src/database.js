@@ -22,7 +22,7 @@ if (process.platform === 'win32') {
 
 
 
-async function getDrivers (NUME_DOCU) {
+async function getDrivers (id) {
     let conn
   
     try {
@@ -30,7 +30,7 @@ async function getDrivers (NUME_DOCU) {
   
       const result = await conn.execute(
         'select * from CHOFERES where CHOFERES_NUME_DOCU = :NUME_DOCU',
-        [NUME_DOCU]
+        [id]
       )
   
       console.log(result.rows[0])
