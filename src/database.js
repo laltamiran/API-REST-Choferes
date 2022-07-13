@@ -1,11 +1,26 @@
+const { Router } = require('express');
 const oracledb = require('oracledb');
+const router = Router();
+
 
 
 const config ={
-    user: LALTAMIRAN,
+    user: 'LALTAMIRAN',
     password: '1@LALTAMIRAN#4' ,
     connectString: 'APU:1521/sos'
 }
+
+if (process.platform === 'win32') {
+  try {
+    oracledb.initOracleClient({libDir: 'C:\\oracle\\instantclient_21_6'});   // note the double backslashes
+  } catch (err) {
+    console.error('Whoops!');
+    console.error(err);
+    process.exit(1);
+  }
+}
+
+
 
 async function getDrivers (NUME_DOCU) {
     let conn
@@ -22,10 +37,13 @@ async function getDrivers (NUME_DOCU) {
     } catch (err) {
       console.log('Ouch!', err)
     } finally {
-      if (conn) { // conn assignment worked, need to close
+      if (conn) { 
         await conn.close()
       }
     }
   }
-  
+
   getDrivers(101)
+module.exports.getDrivers = getDrivers;
+
+module.exports = router;

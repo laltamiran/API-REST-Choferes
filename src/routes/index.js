@@ -1,7 +1,9 @@
 //(12)
 const { Router } = require('express');
+const { BIND_IN } = require('oracledb');
+const { any } = require('underscore');
 const router = Router();
-const config = require('../routes/config');
+const database = require('../database');
 
 //(9)
 router.get('/test', (req, res) => {
@@ -15,3 +17,8 @@ router.get('/test', (req, res) => {
 module.exports = router;
 
 
+router.get(database, async (req, res) =>{
+    sql="select *from choferes";   
+});
+
+module.exports = router;

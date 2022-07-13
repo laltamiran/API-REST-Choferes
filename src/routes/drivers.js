@@ -2,8 +2,9 @@ const { Router } = require('express');
 const res = require('express/lib/response');
 const router = Router();
 const _ = require('underscore');
+const oracledb = require('../database');
 
-const drivers = require('../samples.json');
+const drivers = require('../database');
 
 console.log(drivers);
 
