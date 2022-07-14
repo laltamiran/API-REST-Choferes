@@ -21,7 +21,6 @@ app.use(express.json());
 //routes 
 app.use(require('./routes/index'));
 app.use('/api/drivers', require('./routes/drivers'));
-app.use('/api/users', require('./routes/users'));
 app.use('/api/users', require('./database'));
 
 

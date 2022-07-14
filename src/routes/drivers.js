@@ -6,10 +6,16 @@ const oracledb = require('../database');
 
 const drivers = require('../database');
 
-console.log(drivers);
+
 
 router.get('/', (req, res) => {
-    res.json(drivers);
+    oracledb.query('SELECT * FROM CHOFERES', (err, rows, fields) => {
+        if(!err){
+            res.json(rows);
+        }else{
+            console.log(err);
+        }
+    });
 });
 
 

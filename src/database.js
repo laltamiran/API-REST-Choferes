@@ -4,7 +4,7 @@ const router = Router();
 
 
 
-const config ={
+const config = {
     user: 'LALTAMIRAN',
     password: '1@LALTAMIRAN#4' ,
     connectString: 'APU:1521/sos'
@@ -20,19 +20,14 @@ if (process.platform === 'win32') {
   }
 }
 
-
-
 async function getDrivers (id) {
     let conn
-  
     try {
       conn = await oracledb.getConnection(config)
-  
       const result = await conn.execute(
         'select * from CHOFERES where CHOFERES_NUME_DOCU = :NUME_DOCU',
         [id]
       )
-  
       console.log(result.rows[0])
     } catch (err) {
       console.log('Ouch!', err)
